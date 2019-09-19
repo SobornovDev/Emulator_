@@ -1,0 +1,10 @@
+select concat(x.filename,' ','in',' ', (select a.data from (select distinct e.data from in_out_log.table_emulator e 
+where (e.folder = "in")) a
+where a.data = x.data) , ' ','out',' ', (select b.data from (select distinct h.data from in_out_log.table_emulator h 
+where (h.folder = "out")) b
+where b.data = x.data), ' ', (select b.data from (select distinct h.data from in_out_log.table_emulator h 
+where (h.folder = "out")) b
+where b.data = x.data) -  (select a.data from (select distinct e.data from in_out_log.table_emulator e 
+where (e.folder = "in")) a
+where a.data = x.data))   from in_out_log.table_emulator as x
+where (x.data between "2019-09-19 16:56:30" AND "2019-09-19 17:00:30");
